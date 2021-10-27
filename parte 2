@@ -1,0 +1,55 @@
+from tkinter import *
+from Cola import*
+
+c=Cola(5)
+
+def llegando(x):
+    if not c.llena():
+        c.poner(llega.get())
+        encola.config(text=c.string(),width=W+2)
+        cupos.config(text=str(5-c.largo()))
+        if c.llena():
+            estado.config(text="llena",width=W)
+        else:
+            estado.config(text="ok",width=W)
+    
+def atender():
+    if not c.vacia():
+        encaja.config(text=c.sacar(),width=W-3)
+        encola.config(text=c.string(),width=W+2)
+        cupos.config(text=str(5-c.largo()))
+        if c.vacia():
+            estado.config(text="vacia",width=W)
+        else:
+            estado.config(text="ok",width=W)
+    else:
+        encaja.config(text="",width=W-3)
+
+v = Tk()
+W=15
+f1=Frame()
+Label(f1,text="Caja",width=W).pack(side=LEFT) 
+Label(f1,text="en Caja",width=W).pack(side=LEFT) 
+Label(f1,text="Cola",width=W).pack(side=LEFT) 
+Label(f1,text="cupos",width=W).pack(side=LEFT) 
+Label(f1,text="llega",width=W).pack(side=LEFT) 
+Label(f1,text="estado cola",width=W).pack(side=LEFT) 
+
+llega = Entry(v)
+encaja = Label(v)
+encola = Label(v)
+cupos = Label(v)
+estado = Label(v)
+
+estado.config(text="vacia",width=W)
+cupos.config(text="5",width=W-3)
+f1.pack()
+llega.bind("<Return>",llegando)
+Button(v,text="atender", command=atender,width=W).pack(side=LEFT)
+    
+estado.pack(side=RIGHT)
+llega.pack(side=RIGHT)
+cupos.pack(side=RIGHT)
+encola.pack(side=RIGHT)
+encaja.pack(side=RIGHT)
+v.mainloop()
